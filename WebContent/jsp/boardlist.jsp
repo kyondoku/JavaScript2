@@ -52,7 +52,7 @@
 			// 개중요개중요개중요 ! BoardVO의 객체생성을  무조건 while문 안에서 해야됨 아니면 다 같은값나옴!!
 			vo.setI_board(i_board);
 			vo.setTitle(title);
-			
+			//
 			boardList.add(vo);
 			
 		}
