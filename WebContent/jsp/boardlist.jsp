@@ -15,6 +15,7 @@
 		//getConnection은 DriverManager클래스(대문자시작이니까)의 static메소드->생성안해줘도 사용가능
 		Connection con = DriverManager.getConnection(url, username, password);
 		System.out.println("접속성공");
+		//
 		return con;
 	}
 %>
