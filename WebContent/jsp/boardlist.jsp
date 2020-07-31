@@ -34,7 +34,7 @@
 	// 셀렉트문의 결과를 담는 담당
 	
     // " SELECT ~~~ " 따옴표안에 한칸씩 띄우기 
-	String sql = " SELECT i_board, title, ctnt, i_student FROM t_board ";
+	String sql = " SELECT i_board, title, ctnt, i_student FROM t_board ORDER BY i_board ASC ";
 	
 	try{
 		con = getCon();		
@@ -81,7 +81,9 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<div>게시판 리스트</div>
+	<div>
+	게시판 리스트
+	<a href="/jsp/boardWrite.jsp"><button>글쓰기</button></a></div>
 	<table>
 		<tr>
 			<th>No</th>
@@ -104,8 +106,6 @@
 			</td>
 		</tr>
 		<% } %>
-		
-		
 	</table>
 </body>
 </html>
