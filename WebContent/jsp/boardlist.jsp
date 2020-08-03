@@ -34,7 +34,7 @@
 	// 셀렉트문의 결과를 담는 담당
 	
     // " SELECT ~~~ " 따옴표안에 한칸씩 띄우기 
-	String sql = " SELECT i_board, title, ctnt, i_student FROM t_board ORDER BY i_board ASC ";
+	String sql = " SELECT i_board, title, ctnt, i_student FROM t_board ORDER BY i_board DESC ";
 	
 	try{
 		con = getCon();		

@@ -1,23 +1,35 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%
+	String msg = "";
+	String err = request.getParameter("err");
+	if(err != null) {
+		switch(err) {
+		case "10":
+			msg = "등록 할 수 없습니다.";
+			break;
+		case "20":
+			msg = "DB 에러 발생";
+			break;
+		}
+	}
+%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>글쓰기</title>
 <style>
-	.jj{
-		background-color: coral;
+	#msg {
+		color: red;
 	}
-	.bb{
-		
-	}
-
 </style>
 </head>
 <body>
+	<div id ="msg"><%=msg %></div>
 	<div>
-		<form action="/jsp/boardWriteProc.jsp" method="post">
+		<form id="frm" action="/jsp/boardWriteProc.jsp" method="post" onsubmit="return chk()">
+																<!-- return false 빼고 다 날아감 false도 날아가고  -->
 						<!-- 
 							위 jsp는 처리하는 담당 
 							보안이 필요없는 경우에는 post대신 get방식으로 해도 된다.
@@ -29,5 +41,42 @@
 			<div><input type="submit" value="글등록"></div>	
 		</form>
 	</div>
+	<script>
+		function eleValid(ele, nm) {
+			if(ele.value.length == 0){
+				alert(nm+'을(를) 입력해 주세요')
+				ele.focus()
+				return true
+			}
+		}
+		
+		
+		function chk() {
+//			console.log(`title: \${frm.title.value}`)
+			if(eleValid(frm.title, '제목')) {
+				return false
+			} else if(eleValid(frm.ctnt,'내용')) {
+				return false
+			} else if(eleValid(frm.i_student,'작성자')) {
+				return false
+			}
+		}
+		
+/*		function chk() {
+			console.log(`title : \${frm.title.value}`)
+			// 이거랑 똑같음 console.log('title : ' + frm.title.value)
+			
+			if(frm.title.value == ''){
+				alert('제목을 입력해 주세요.')
+				frm.title.focus()
+				return false
+			} else if(frm.ctnt.value.length == 0){
+				alert('내용을 입력해 주세요.')
+				frm.ctnt.focus()
+				return false
+			}
+		}
+*/
+	</script>
 </body>
 </html>
