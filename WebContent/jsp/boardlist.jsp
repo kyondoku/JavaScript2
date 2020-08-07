@@ -79,33 +79,100 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300&display=swap');
+html, body {
+	font-family: 'Noto Sans KR', sans-serif;
+	font-weight: 400;
+	padding: 0;
+	margin: 0;
+	width: 100%;
+	height: 100%;
+}
+
+#container { 
+	height: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+} 	
+
+.listtitle { 
+
+	text-align: right;
+	font-size: 20px;
+	font-weight: bolder;
+
+}
+
+.writebutton { 
+	display: flex;
+	justify-content: flex-end;
+}
+
+button { 
+	background-color: white; 
+	font-size: 10px;
+	width: 60px; height: 25px;
+	border: 1px solid black;
+	cursor: pointer;
+}
+
+table { 
+	margin-top: 10px;
+	border-collapse: collapse; 
+}
+
+a {
+	text-decoration: none;
+	color: black;
+}
+
+tr, td { 
+	height: 30px; 
+	font-size: 12px;
+}
+
+tr td:nth-child(1) { 
+	text-align: center;
+}
+tr td:nth-child(2) { 	
+	padding-left: 30px; 
+	width: 300px;  
+}
+
+
+</style>
 </head>
 <body>
-	<div>
-	게시판 리스트
-	<a href="/jsp/boardWrite.jsp"><button>글쓰기</button></a></div>
-	<table>
-		<tr>
-			<th>No</th>
-			<th>제목</th>
-		</tr>
-		
-		<%for(BoardVO vo : boardList) {%>
-		<tr>
-			<td><%=vo.getI_board() %></td>
-			<td>
-			<!-- 
-				https://search.naver.com/search.naver?sm=top_hty&fbm=0&ie=utf8&query=레드벨벳 
-												sm -> pk값 / top_hty -> value	
-												?가 쿼리스트링 시작
-			-->
-			
-				<a href="/jsp/boardDetail.jsp?i_board=<%=vo.getI_board() %>">
-					<%=vo.getTitle() %>
-				</a>
-			</td>
-		</tr>
-		<% } %>
-	</table>
+	<div id="container">
+		<div>
+			<div class="list"><p class="listtitle">게시판<br>리스트</p></div>
+			<div class="writebutton"><a href="/jsp/boardWrite.jsp"><button>글쓰기</button></a></div>
+			<table>
+				<tr>
+					<th>No</th>
+					<th>제목</th>
+				</tr>
+				
+				<% for(BoardVO vo : boardList) { %>
+				<tr>
+					<td><%=vo.getI_board() %></td>
+					<td class="content">
+					<!-- 
+						https://search.naver.com/search.naver?sm=top_hty&fbm=0&ie=utf8&query=레드벨벳 
+														sm -> pk값 / top_hty -> value	
+														?가 쿼리스트링 시작
+					-->
+					
+						<a href="/jsp/boardDetail.jsp?i_board=<%=vo.getI_board() %>">
+							<%=vo.getTitle() %>
+						</a>
+					</td>
+				</tr>
+				<% } %>
+			</table>
+		</div>
+	</div>
 </body>
 </html>
